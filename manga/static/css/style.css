@@ -1,0 +1,1222 @@
+body {
+    background-color: #14181b;
+    color: darkgray;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #282a2e;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+nav a {
+    color: #bbb;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+.register a, .profile a {
+    margin-left: 10px;
+     color: #fff;
+}
+.profile{
+display:flex;
+align-items: center;
+}
+
+.profile a:first-child{
+     margin-right: 10px;
+}
+ .icons img{
+border-radius:50%;
+}
+ .container {
+    width: 90%;
+     margin: 0 auto; /* Центрирование контейнера */
+    padding: 20px 0;
+}
+
+ .section-title {
+    font-size: 24px;
+     font-weight: bold;
+    margin-bottom: 20px;
+}
+.card-container {
+     display: flex; /* Flex-контейнер */
+     flex-wrap: wrap;
+     justify-content: flex-start;/* Выравнивание элементов по левому краю */
+     gap: 20px; /* Расстояние между карточками */
+ }
+.card {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 10px;
+    width: 180px;
+   text-align: left;
+    /* border: 1px solid #444; */
+}
+ .card:hover{
+   transform: scale(1.05) ; /* Увеличиваем карточку при наведении */
+    transition: transform 0.2s ease-in-out;
+ }
+
+ .card img {
+     max-width: 100%; /* Изображение не больше контейнера */
+     border-radius: 8px 8px 0 0; /* Закругление углов сверху */
+     display: block; /* Убираем пробел под изображением */
+     height: auto;
+}
+.info {
+    margin-top: 10px;
+    padding: 0 10px;
+}
+.info h3 {
+     font-size: 14px;
+     margin: 0 0 5px 0;
+     white-space: nowrap; /* Предотвращение переноса на новую строку */
+     overflow: hidden; /* Скрываем выходящий текст */
+     text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.info p {
+     font-size: 12px;
+    margin: 0;
+     color: #bbb;
+}
+  .hover-link {
+text-decoration: none; /* Убираем подчеркивание */
+color: inherit; /* Наследуем цвет от родителя */
+}
+.container h2 {
+    text-align: left;
+    margin-top: 30px;
+}
+
+ footer {
+     position: fixed; /* Фиксируем футер */
+     left: 0;
+     bottom: 0;
+     width: 100%;
+    background-color: #222; /* Темный фон */
+    color: #bbb;
+    padding: 10px 20px;
+    text-align: center;
+     border-top: 1px solid #444;
+ }
+
+ .manga-detail-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.manga-main {
+    flex: 3;
+    display: flex;
+    gap: 20px;
+}
+
+.manga-main .manga-image{
+    width: 200px;
+}
+.manga-main .manga-image img{
+    width: 100%;
+    height: auto;
+}
+
+.manga-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.manga-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.manga-title{
+    font-size: 24px;
+    margin: 0;
+}
+
+.manga-original_title{
+    font-size: 17px;
+    margin: 0;
+}
+
+.manga-rating{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating-value{
+    font-size: 18px;
+    color: #fdd835;
+}
+
+.rating-count{
+    font-size: 16px;
+}
+
+.rate-button{
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.manga-status{
+    margin-bottom: 10px;
+}
+
+.manga-status-list{
+    display: flex;
+    gap: 10px;
+}
+
+.manga-status-list span{
+    font-size: 14px;
+}
+
+.manga-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.tab-button{
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tab-button.active{
+    background-color: #007bff;
+}
+
+.manga-description-container{
+    margin-bottom: 10px;
+}
+
+.manga-description p{
+    font-size: 14px;
+    line-height: 1.5;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.chapters-list{
+    display: flex;
+        flex-direction: column;
+    gap: 10px;
+        padding: 10px;
+}
+.chapter{
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+.chapter:hover{
+    background-color: #333;
+}
+.manga-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.badge-secondary{
+background-color: #2a2a2a;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.badge-light{
+background-color: #2a2a2a;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.manga-creators{
+    margin-bottom: 10px;
+}
+
+.manga-creators h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.creators-list{
+    display: flex;
+    gap: 10px;
+}
+.creator{
+        display: flex;
+    flex-direction: column;
+        align-items: center;
+}
+.creator img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.creator span{
+    text-align: center;
+    font-size: 12px;
+}
+
+.manga-sidebar {
+    flex: 1;
+}
+
+.similar-title{
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.add-button{
+    background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    font-size: 12px;
+}
+
+.similar-manga-list{
+    display: flex;
+    flex-direction: column;
+        gap: 10px;
+}
+.similar-manga-card{
+    display: flex;
+        flex-direction: column;
+    gap: 10px;
+        background-color: #1c1c1c;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.similar-manga-card img{
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.similar-manga-card h3{
+font-size: 14px;
+    margin: 0;
+        color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.similar-manga-card p{
+    font-size: 12px;
+    color: #ccc;
+    margin: 0;
+}
+.similar-manga-card a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+.bookmark-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.bookmark-card {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 250px; /* Увеличил ширину карточки */
+}
+
+.bookmark-card img {
+    width: 100%;
+    height: auto;
+    display: block; /* Убирает пробел под картинкой */
+}
+
+.bookmark-info {
+    padding: 10px;
+}
+
+.bookmark-info h3 {
+    font-size: 18px;
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bookmark-info p {
+    font-size: 14px;
+    color: #bbb;
+    margin: 0 0 5px; /* Добавил отступ для p */
+}
+
+.bookmark-info .last-read {
+font-style: italic;
+color: #aaa;
+}
+
+
+.bookmark-list a {
+text-decoration: none;
+color: #fff;
+}
+
+.bookmark-list a:hover {
+    color: #ccc;
+}
+
+.section-title {
+    padding: 10px 20px;
+    font-size: 24px;
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+}
+
+.no-bookmarks {
+text-align: center;
+font-style: italic;
+color: #999;
+}
+.bookmark-card .last-read{
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 5px;
+    display: block; /* Чтобы было на отдельной строке*/
+}
+
+
+
+
+.catalog-container {
+    width: 95%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex; /* Используем flexbox для компоновки */
+    justify-content: space-between; /* Размещаем фильтры и контент по краям */
+}
+
+.catalog-content {
+width: 75%;
+padding-right: 20px;
+}
+
+.filter-sidebar {
+width: 25%;
+background-color: #1c1c1c;
+border-radius: 8px;
+padding: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+position: sticky;
+top: 20px;
+height: fit-content;
+}
+
+.catalog-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.catalog-header h2 {
+font-size: 24px;
+margin: 0;
+}
+
+.filter-header{
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.filter-header h3{
+margin: 0;
+font-size: 18px;
+}
+.filter-header button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-header button:hover{
+color: #999;
+}
+.filter-header button span{
+margin-left: 5px;
+}
+
+
+.filter-group{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+.filter-group:last-child{
+    border-bottom: none;
+}
+.filter-group > details > summary {
+cursor: pointer;
+padding: 8px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+list-style: none;
+}
+
+.filter-group > details > summary::-webkit-details-marker {
+    display:none;
+}
+
+.filter-group > details > summary::after {
+    content: '+';
+    font-size: 1.5em;
+}
+
+.filter-group > details[open] > summary::after{
+content: '-';
+}
+
+.filter-group > details > div{
+padding: 5px 0px;
+}
+.filter-group select, .filter-group input[type=text], .filter-group input[type=number] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    background-color: #1c1c1c;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 5px;
+
+}
+.filter-group input[type=number]{
+    width: 45%;
+}
+.filter-group .date-filter{
+display: flex;
+justify-content: space-between;
+}
+
+
+.manga-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Выравниваем влево */
+}
+
+.manga-card {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 180px; /* уменьшил ширину карточки */
+}
+
+.manga-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.manga-info {
+    padding: 10px;
+}
+
+.manga-info h3 {
+    font-size: 16px;
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.manga-info p {
+    font-size: 14px;
+    color: #bbb;
+    margin: 0;
+}
+
+.manga-list a {
+text-decoration: none;
+color: #fff;
+}
+
+.manga-list a:hover {
+color: #ccc;
+}
+
+
+
+.content-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 65px); /* За вычетом высоты header */
+}
+.profile-container {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 500px;
+    text-align: center;
+    position: relative;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-header h2 {
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 2px solid #007bff;
+}
+
+.profile-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.profile-info span {
+    color: #ccc;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    background-color: #2a2a2a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+.back-button:hover {
+    background-color: #424242;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.rating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.rating-btn {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.rating-btn:hover {
+    background-color: #ddd;
+}
+
+#closeModal {
+    margin-top: 15px;
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.reader-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.reader-header {
+    margin-bottom: 20px;
+}
+
+.reader-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.manga-page {
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination .btn {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.pagination .btn:hover {
+    background-color: #0056b3;
+}
+
+.reader-footer {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Комментарии в тёмном стиле */
+.comments-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #121212; /* Чёрный фон */
+    color: #e0e0e0; /* Светлый текст */
+    border-radius: 5px;
+}
+
+/* Форма комментариев */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #222; /* Тёмный фон поля */
+    color: white; /* Белый текст */
+    border: 1px solid #444; /* Серый бордер */
+    border-radius: 5px;
+    resize: none;
+}
+
+.comment-form .btn-primary {
+    background-color: #007bff; /* Цвет кнопки */
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Список комментариев */
+.comments-list {
+    margin-top: 20px;
+}
+
+.comment {
+    padding: 10px;
+    border-bottom: 1px solid #333; /* Темная граница */
+    background: #181818; /* Тёмный фон */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.comment strong {
+    font-size: 14px;
+    color: #ffcc00; /* Жёлтый ник */
+}
+
+.comment p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.comment-date {
+    font-size: 12px;
+    color: #bbb; /* Серый текст */
+}
+
+.comment-actions {
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+
+/* Форма редактирования */
+.edit-comment-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: #121212;
+    color: white;
+    border-radius: 8px;
+}
+
+.edit-comment-container h2 {
+    text-align: center;
+}
+
+.edit-comment-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-comment-container .btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-comment-container .btn-primary:hover {
+    background: #0056b3;
+}
+
+.edit-comment-container .btn-secondary {
+    background: gray;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.edit-comment-container .btn-secondary:hover {
+    background: darkgray;
+}
+
+.comment-edit-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #222;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+h2 {
+    text-align: center;
+}
+.comment-form p label {
+    display: block;
+    font-weight: bold;
+}
+.comment-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.btn-save, .btn-delete {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-save {
+    background: #28a745;
+    color: white;
+}
+.btn-save:hover {
+    background: #218838;
+}
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+.btn-delete:hover {
+    background: #c82333;
+}
+
+.comment-actions {
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-manga-edit, .btn-manga-delete {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-manga-edit {
+    background: #ffc107;
+    color: black;
+}
+
+.btn-manga-edit:hover {
+    background: #e0a800;
+}
+
+.btn-manga-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-manga-delete:hover {
+    background: #c82333;
+}
+
+/* Общий контейнер */
+.profile-update-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-update-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Форма */
+.profile-update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-update-form p {
+    margin-bottom: 15px;
+}
+
+.profile-update-form label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.profile-update-form input[type="text"],
+.profile-update-form input[type="email"],
+.profile-update-form textarea,
+.profile-update-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #444;
+    transition: border-color 0.3s;
+}
+
+.profile-update-form input[type="text"]:focus,
+.profile-update-form input[type="email"]:focus,
+.profile-update-form textarea:focus,
+.profile-update-form input[type="file"]:focus {
+    border-color: #4CAF50; /* Зеленый цвет при фокусе */
+    outline: none;
+}
+
+.profile-update-form textarea {
+    resize: vertical; /* Разрешить изменение высоты */
+    min-height: 120px;
+}
+
+/* Кнопка отправки */
+.submit-button {
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #45a049; /* Более темный зеленый при наведении */
+}
+
+
+.form-container {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+label, input, select, textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #4cae4c;
+}
+
+.donation-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.donation-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.donation-container p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.donation-options {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.donation-card {
+    width: 45%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Выравнивание по центру внутри donation-card */
+}
+
+.donation-card h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Стили для DonatePay */
+.donatepay-donate-button a {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block; /* Важно для правильного отображения */
+    margin-top: 10px;
+}
+
+/* Стили для Boosty */
+.donation-card a {
+    background-color: #3f729b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block; /* Важно для правильного отображения */
+    margin-top: 10px;
+}
+
+.donation-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.donation-info h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.donation-info ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #666;
+}
+
+.donation-info li {
+    margin-bottom: 8px;
+}
+
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-actions .btn {
+    margin-right: 10px;
+}

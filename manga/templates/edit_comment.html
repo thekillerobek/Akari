@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="comment-edit-container">
+    <h2>Редактировать комментарий</h2>
+    <form method="post" class="comment-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-save">Сохранить</button>
+    </form>
+    <form method="post" action="{% url 'delete_comment' comment.id %}" class="delete-form">
+        {% csrf_token %}
+        <button type="submit" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить комментарий?');">Удалить</button>
+    </form>
+</div>
+
+{% endblock %}

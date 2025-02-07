@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AkariManga - Bookmark{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="section-title">Мои закладки</h2>
+     {% if bookmarks %}
+    <div class="bookmark-list">
+      {% for bookmark in bookmarks %}
+        <div class="bookmark-card">
+          <a href="{% url 'manga_detail' bookmark.manga.original_title %}">
+            <img src="{{bookmark.manga.cover}}" alt="{{ bookmark.manga.title }}">
+            <div class="bookmark-info">
+              <h3>{{ bookmark.manga.title }}</h3>
+              <p>{{ bookmark.manga.typr }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+      {% else %}
+      <p class="no-bookmarks">У вас нет закладок.</p>
+     {% endif %}
+</div>
+{% endblock content %}

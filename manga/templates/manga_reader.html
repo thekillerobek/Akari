@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}AkariManga - Manga Read{% endblock title %}
+
+
+{% block content %}
+<main class="reader-container">
+    <div class="reader-header">
+        <h1>{{ manga.title }} - Глава {{ chapter.number }}</h1>
+    </div>
+
+    <div class="reader-images">
+        {% for image in images %}
+            <img src="{{ image.image.url }}" alt="Page {{ forloop.counter }}" class="manga-page">
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if images.has_previous %}
+            <a href="?page=1" class="btn">Первая</a>
+            <a href="?page={{ images.previous_page_number }}" class="btn">← Назад</a>
+        {% endif %}
+
+        <span>Страница {{ images.number }} из {{ images.paginator.num_pages }}</span>
+
+        {% if images.has_next %}
+            <a href="?page={{ images.next_page_number }}" class="btn">Вперёд →</a>
+            <a href="?page={{ images.paginator.num_pages }}" class="btn">Последняя</a>
+        {% endif %}
+    </div>
+
+    <div class="reader-footer">
+        <a href="{% url 'manga_detail' manga.original_title %}" class="btn btn-secondary">Вернуться к манге</a>
+    </div>
+</main>
+{% endblock %}

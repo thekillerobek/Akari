@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{%load static %}
+
+{% block title %}AkariManga - Upload Chapter{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Добавить главу</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+{% endblock %}

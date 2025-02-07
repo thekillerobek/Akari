@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AkariManga - Catalog{% endblock title %}
+
+{% block content %}
+<div class="catalog-container">
+    <div class="catalog-content">
+         <div class="catalog-header">
+             <h2 class="catalog-title">Каталог</h2>
+         </div>
+           <div class="manga-list">
+             {% for manga in mangas %}
+               <div class="manga-card">
+                 <a href="{% url 'manga_detail' manga.original_title %}">
+                   <img src="{{manga.cover.url}}" alt="{{ manga.title }}">
+                   <div class="manga-info">
+                     <h3>{{ manga.title }}</h3>
+                     <p>{{ manga.typr.name }}</p>
+                    </div>
+                 </a>
+               </div>
+             {% endfor %}
+           </div>
+    </div>
+   <div class="filter-sidebar">
+       <div class="filter-header">
+            <h3>Фильтры</h3>
+            <button onclick="window.location.href = window.location.pathname">очистить <span>X</span></button>
+       </div>
+
+        <form class="filter-form" method="get">
+
+             <div class="filter-group">
+             <details>
+               <summary>Типы</summary>
+               <div>
+                   <select name="typr">
+                     <option value="">Все типы</option>
+                     {% for typr in typrs %}
+                     <option value="{{ typr.id }}" {% if request.GET.typr == typr.id|stringformat:"s" %}selected{% endif %}>{{ typr.name }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+               </details>
+              </div>
+
+             <div class="filter-group">
+              <details>
+                <summary>Жанры</summary>
+               <div>
+                  <select name="genres">
+                    <option value="">Все жанры</option>
+                  {% for genre in genres %}
+                     <option value="{{ genre.id }}" {% if request.GET.genres == genre.id|stringformat:"s" %}selected{% endif %}>{{ genre.name }}</option>
+                     {% endfor %}
+                     </select>
+                 </div>
+               </details>
+             </div>
+
+           <div class="filter-group">
+               <details>
+                 <summary>Теги</summary>
+                 <div>
+                    <select name="genres">
+                      <option value="">Все жанры</option>
+                    {% for tag in tags %}
+                       <option value="{{ tag.id }}" {% if request.GET.genres == tag.id|stringformat:"s" %}selected{% endif %}>{{ tag.name }}</option>
+                       {% endfor %}
+                       </select>
+                   </div>
+             </details>
+            </div>
+
+           <div class="filter-group">
+               <details>
+                 <summary>Статус проекта</summary>
+                  <div>
+                       <select name="status">
+                      <option value="">Все статусы</option>
+                       <option value="Продолжается" {% if request.GET.status == "Продолжается" %}selected{% endif %}>Продолжается</option>
+                      <option value="Завершён" {% if request.GET.status == "Завершён" %}selected{% endif %}>Завершён</option>
+                      <option value="Приостановлен" {% if request.GET.status == "Приостановлен" %}selected{% endif %}>Приостановлен</option>
+                     </select>
+                 </div>
+               </details>
+             </div>
+           <div class="filter-group">
+             <details>
+                 <summary>Статус перевода</summary>
+                   <div>
+                        <input type="text" name="translate_status" placeholder="Введите статус перевода" value="{{request.GET.translate_status|default:''}}">
+                  </div>
+             </details>
+          </div>
+          <div class="filter-group">
+             <details>
+                <summary>Возрастной рейтинг</summary>
+                 <div>
+                    <input type="number" name="age_rating" placeholder="Введите возрастной рейтинг" value="{{request.GET.age_rating|default:''}}">
+                </div>
+             </details>
+         </div>
+          <div class="filter-group">
+               <details>
+                 <summary>Год выпуска</summary>
+                   <div class="date-filter">
+                          <input type="number" name="date_from" placeholder="От"  value="{{request.GET.date_from|default:''}}">
+                         <input type="number" name="date_to" placeholder="До"  value="{{request.GET.date_to|default:''}}">
+                   </div>
+               </details>
+          </div>
+              <button class="btn btn-light" type="submit">Фильтровать</button>
+        </form>
+   </div>
+ </div>
+{% endblock content %}

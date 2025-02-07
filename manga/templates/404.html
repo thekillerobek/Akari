@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>Упс!</h1>
+                    <h2>404 Страница не найдена</h2>
+                    <div class="error-details">
+                        Извините, произошла ошибка, запрашиваемая страница не найдена!
+                    </div>
+                    <div class="error-actions">
+                        <a href="{% url 'home' %}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                            На главную </a>
+                        <a href="{%url 'donation'%}" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span>
+                            Поддержка </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

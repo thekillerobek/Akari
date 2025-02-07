@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AkariManga - Profile{% endblock title %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="profile-container">
+    <div class="profile-header">
+        <h2>Личный профиль пользователя {{profile..username}}</h2>
+    </div>
+    <div class="profile-image">
+        <img src="{{profile.avatar.url}}" alt="Profile Picture">
+    </div>
+    <div class="profile-info">
+        <p><strong>Имя пользователя:</strong> <span>{{ profile.user.username }}</span></p>
+        <p><strong>Email:</strong> <span>{{ profile.user.email }}</span></p>
+        <p><strong>Био:</strong> <span>{% if profile.bio %} {{ profile.bio }} {% else %} - {% endif %} </span></p>
+    </div><br><br>
+    <a href="{% url 'update' username=user.username%}" class="edit-button">Редактировать</a>
+    <a href="{% url 'home' %}" class="back-button">Назад</a>
+</div>
+</div>
+
+{% endblock content %}

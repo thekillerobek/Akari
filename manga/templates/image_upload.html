@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+<div class="form-container">
+    <h2>Добавить изображение</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Загрузить</button>
+    </form>
+</div>
+{% endblock %}

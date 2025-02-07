@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{%load static %}
+
+{% block title %}AkariManga - Манга сайт{% endblock title %}
+
+{%block content %}
+<div class="container">
+    <div class="section-title">Попульярное</div>
+    <div class="card-container">
+        {% for i in new_manga %}
+        <div class="card">
+            <a href="{% url 'manga_detail' i.original_title%}" class="hover-link"><img src="{{i.cover.url}}" alt="{{i.title}}"></a>
+            <div class="info">
+                <h3><a href="{% url 'manga_detail' i.original_title%}" class="hover-link">{{i.title}}</a></h3>
+                <p>{{i.typr}} ★{{ manga.avg_rating|default:"0"|floatformat:1 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="section-title">Горячие новинки</div>
+    <div class="card-container">
+        {% for i in new_manga %}
+        <div class="card">
+            <a href="{% url 'manga_detail' i.original_title%}" class="hover-link"><img src="{{i.cover.url}}" alt="{{i.title}}"></a>
+            <div class="info">
+                <h3><a href="{% url 'manga_detail' i.original_title%}" class="hover-link">{{i.title}}</a></h3>
+                <p>{{i.typr}} ★{{ manga.avg_rating|default:"0"|floatformat:1 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="section-title">Продолжить чтение</div>
+   {% for continue in continue_reading %}
+     <div class="card-container">
+         <a href="{% url 'manga_detail' continue.manga.original_title %}">
+            <div class="card">
+            <img src="{{continue.manga.cover.url}}" alt="{{ continue.manga.title }}">
+                 <div class="info">
+                    <h3><a href="{% url 'manga_detail' continue.manga.original_title %}" class="hover-link">{{ continue.manga.title }}</a></h3>
+                    {% if continue.last_chapter %}
+                        <p>Глава {{ continue.last_chapter.number }}</p>
+                    {% else %}
+                        <p>Начните читать</p>
+                    {% endif %}
+                </div>
+            </div>
+         </a>
+      </div>
+    {% empty %}
+     <p>Нет закладок.</p>
+    {% endfor %}
+</div>
+<br><br><br>
+{%endblock content%}

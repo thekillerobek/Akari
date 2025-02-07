@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AkariManga - Обновление профиля{% endblock title %}
+
+{% block content %}
+<div class="profile-update-container">
+    <h2>Обновить профиль</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="profile-update-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Сохранить изменения</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AkariManga - Donation{% endblock title %}
+
+{% block content %}
+    <div class="donation-container">
+        <h1>Поддержать AkariManga </h1>
+        <p>Спасибо за вашу поддержку! Ваши пожертвования помогают нам поддерживать сайт, добавлять новый контент и улучшать качество обслуживания.</p>
+
+        <div class="donation-options">
+            <div class="donation-card">
+                <h2>DonatePay</h2>
+                <div class="donatepay">
+                    <div class="donatepay-donate-button">
+                        <a href="https://new.donatepay.ru/@1342330" target="_blank">Поддержать через DonatePay</a>
+                    </div>
+                </div>
+                <!-- End DonatePay Widget -->
+            </div>
+
+            <div class="donation-card">
+                <h2>Boosty</h2>
+                <a href="https://boosty.to/nof_developer/donate" target="_blank">Поддержать на Boosty</a>
+            </div>
+            <div class="donation-card">
+                <h2>DonationAlerts</h2>
+                <a href="https://www.donationalerts.com/r/nof_king" target="_blank">Поддержать на DonationAlerts</a>
+            </div>
+        </div>
+        <div class="donation-info">
+            <h2>Куда идут ваши пожертвования?</h2>
+            <ul>
+                <li>Оплата серверов и хостинга</li>
+                <li>Разработка новых функций и улучшение сайта</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+{% endblock %}

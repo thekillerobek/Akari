@@ -1,0 +1,263 @@
+{% extends 'base.html'%}
+{%load static %}
+
+{% block title %}AkariManga - Manga{% endblock title %}
+
+{%block content %}
+<main class="manga-detail-container">
+    <div class="manga-main">
+        <div class="manga-image">
+            <img src="{{manga.cover.url}}" alt="Manga Cover">
+        </div>
+        <div class="manga-info">
+            <div class="manga-header">
+                <div>
+                    <h1 class="manga-title">{{ manga.title }}</h1>
+                    <h1 class="manga-original_title">{{ manga.original_title }}</h1>
+                </div>
+                <div class="manga-rating">
+                    <span class="rating-value">★ {{ avg_rating }}</span>
+                    <button class="rate-button">Оценить</button>
+                    <div id="ratingModal" class="modal">
+                        <div class="modal-content">
+                            <h3>Оцените мангу</h3>
+                            <div class="rating-options">
+                                <button class="rating-btn" data-rating="5">Очень хорошо (5)</button>
+                                <button class="rating-btn" data-rating="4">Хорошо (4)</button>
+                                <button class="rating-btn" data-rating="3">Нормально (3)</button>
+                                <button class="rating-btn" data-rating="2">Ну такое (2)</button>
+                                <button class="rating-btn" data-rating="1">Не советую (1)</button>
+                            </div>
+                            <button id="closeModal">Закрыть</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="manga-status">
+                <div class="manga-status-list">
+                    <span class="badge badge-light">В закладках: <span class="manga-bookmarks">{{ manga.bookmark_count }}</span></span>
+                    <span class="badge badge-light">Просмотров: <span class="manga-views">
+                        {% if manga.views >= 1000 %}{{ manga.views|divisibleby:1000|stringformat:".1f"}}K{% else %}{{ manga.views }}{% endif %}
+                    </span></span>
+                    <span class="badge badge-light">Выпуск: <span class="manga-release">{{ manga.status }}</span></span>
+                    <span class="badge badge-light">Год выпуска: <span class="manga-release">{{ manga.datte }}</span></span>
+                </div>
+            </div>
+            <div class="manga-tabs">
+                <button class="tab-button active" data-tab="description">Описание</button>
+                <button class="tab-button" data-tab="chapters">Главы ({{ manga.chapters.count }})</button>
+                <button class="tab-button" data-tab="discussions">Обсуждения</button>
+            </div>
+            <div class="manga-description-container tab-content active" id="description">
+                <div class="manga-description">
+                    <p>{{ manga.description }}</p>
+                </div><br>
+                <div class="manga-creators">
+                    <h3>Создатели:</h3>
+                    <div class="creators-list">
+                        <div class="creator">
+                            <span class="badge badge-secondary">Автор: {{ manga.author }}</span>
+                        </div>
+                        <div class="creator">
+                            <span class="badge badge-secondary">Опубликовал: {{ manga.uploader }}</span>
+                        </div>
+                    </div>
+                </div><br>
+                Жанры:
+                <div class="manga-genres">
+                    {% for genre in manga.genres.all %}
+                        <span class="badge badge-secondary">{{ genre.name }}</span>
+                    {% endfor %}
+                </div><br>
+                Теги:
+                <div class="manga-genres">
+                    {% for tag in manga.tags.all %}
+                        <span class="badge badge-secondary">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div>
+                    <a href="{% url 'add_bookmark' manga.id %}" class="btn btn-primary">
+                        {% if is_bookmarked %}
+                            Убрать из закладок
+                        {% else %}
+                            Добавить в закладки
+                        {% endif %}
+                    </a>
+                </div>
+                <br>
+            </div>
+           <div class="manga-chapters-container tab-content" id="chapters">
+               <div class="chapters-list"></div>
+                <div id="loading" style="display:none;">Загрузка...</div>
+            </div>
+            <div class="manga-discussions-container tab-content" id="discussions">
+                <div class="comments-section">
+                    <h3>Комментарии:</h3>
+                    
+                    <form method="post" class="comment-form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn-primary">Оставить комментарий</button>
+                    </form>
+                
+                    <div class="comments-list">
+                        {% for comment in comments %}
+                            <div class="comment">
+                                <strong>{{ comment.user.username }}</strong>
+                                <p>{{ comment.text }}</p>
+                                <span class="comment-date">{{ comment.created_at }}</span>
+                    
+                                {% if request.user == comment.user %}
+                                    <div class="comment-actions">
+                                        <a href="{% url 'edit_comment' comment.id %}" class="btn-manga-edit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                          </svg></a>
+                                        <a href="{% url 'delete_comment' comment.id %}" class="btn-manga-delete"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                                          </svg></a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% empty %}
+                            <p>Пока нет комментариев.</p>
+                        {% endfor %}
+                    </div>                    
+            </div>
+        </div>
+    </div>
+    <div class="manga-sidebar">
+        <h2>Похожая {{ manga.typr.name }}:</h2>
+        <div class="similar-manga-list">
+            {% for similar_manga in similar_mangas %}
+                <div class="similar-manga-card">
+                    <a href="{% url 'manga_detail' similar_manga.pk %}">
+                        <img src="{{similar_manga.cover.url}}" alt="{{ similar_manga.title }}">
+                        <h3>{{ similar_manga.title }}</h3>
+                        <p>{{ similar_manga.typr.name }}</p>
+                    </a>
+                </div>
+            {% empty %}
+                <p>Нет похожих {{manga.typr.name}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+         const chaptersList = document.querySelector('.chapters-list');
+        const loadingElement = document.getElementById('loading');
+
+        tabButtons.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const tabId = this.getAttribute('data-tab');
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active')
+
+                 tabContents.forEach(content => {
+                    if (content.id === tabId) {
+                        content.classList.add('active');
+                        if(tabId === 'chapters'){
+                            loadChapters();
+                        }
+                    } else {
+                       content.classList.remove('active');
+                    }
+                });
+            });
+        });
+      function loadChapters(){
+          if(chaptersList.innerHTML.trim() === ''){
+              loadingElement.style.display = "block";
+
+               fetch('/api/chapters/{{manga.id}}/')
+                 .then(response => response.json())
+                 .then(data => {
+                    loadingElement.style.display = "none";
+                    if(data.length > 0){
+                        data.forEach(chapter => {
+                           const chapterElement = document.createElement('a');
+                           chapterElement.href = `/manga/${chapter.manga}/${chapter.id}/`;
+                            chapterElement.classList.add("chapter");
+                             chapterElement.textContent = `Глава ${chapter.number}: ${chapter.title}`;
+                          chaptersList.appendChild(chapterElement);
+
+                         });
+                    }else{
+                       chaptersList.textContent = "Нет глав для отображения";
+                   }
+                })
+               .catch(error => {
+                loadingElement.style.display = "none";
+                    chaptersList.textContent = "Ошибка при загрузке глав";
+                   console.error("Error loading chapters:", error);
+               });
+             }
+        }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const rateButton = document.querySelector('.rate-button');
+    const modal = document.getElementById('ratingModal');
+    const closeModal = document.getElementById('closeModal');
+    const ratingButtons = document.querySelectorAll('.rating-btn');
+
+    // Открытие модального окна
+    rateButton.addEventListener('click', function () {
+        modal.style.display = 'flex';
+    });
+
+    // Закрытие модального окна
+    closeModal.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    // Обработка выбора рейтинга
+    ratingButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const rating = this.getAttribute('data-rating');
+
+            fetch('/api/rate_manga/{{manga.id}}/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')  // Для защиты запроса
+                },
+                body: JSON.stringify({ rating: rating })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Вы поставили рейтинг: ${rating}`);
+                    modal.style.display = 'none';
+                } else {
+                    alert('Ошибка при отправке рейтинга');
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        });
+    });
+
+    // Функция для получения CSRF-токена
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+
+{%endblock content%}
